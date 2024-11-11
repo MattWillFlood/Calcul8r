@@ -94,6 +94,10 @@ function replacer(x,y) {
 }
 
 function calculate(x) {    
+
+    'x+\u00f7'.includes(x[0]) ? x = x.slice(1) : {}
+    '- +x\u00f7'.includes(x.slice(-1)) ? x = x.slice(0,-1) : {}
+
     x = x.includes('x') ? multiply(x) : x
     x = x.includes('\u00f7') ? divide(x) : x
     x = x.includes('+') ? plus(x) : x
