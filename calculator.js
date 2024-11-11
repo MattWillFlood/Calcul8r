@@ -1,5 +1,5 @@
-//const container = document.querySelector('div')
-const screen = document.querySelector('.screen');
+const main = document.querySelector('.main')
+const screen = document.createElement('div');
 const keypad = document.createElement('div')
 const display = document.createElement('a')
 screen.appendChild(display)
@@ -15,7 +15,7 @@ for (let i=0; i<=3; i++) {
         for (let j=1; j<=3; j++) {
             let butt = document.createElement('button');
             butt.innerHTML = String(i*3 + j);
-            butt.classList.add('number')
+            butt.classList.add('number','nx')
             butt.addEventListener('click', () => current+=String(i*3 + j))
             row.appendChild(butt)
         }
@@ -27,7 +27,7 @@ for (let i=0; i<=3; i++) {
 
         let butt = document.createElement('button');
         butt.innerHTML = '0';
-        butt.classList.add('number')
+        butt.classList.add('number','nx')
         butt.addEventListener('click', () => current+='0')
         row.appendChild(butt)
 
@@ -49,10 +49,10 @@ ADD.innerHTML = '+';
 SUB.innerHTML = '-';
 MUL.innerHTML = 'x';
 DIV.innerHTML = "\u00f7";
-ADD.classList.add('number')
-MUL.classList.add('number')
-DIV.classList.add('number')
-SUB.classList.add('number')
+ADD.classList.add('number','sym')
+MUL.classList.add('number','sym')
+DIV.classList.add('number','sym')
+SUB.classList.add('number','sym')
 ADD.addEventListener('click', () => current = replacer(current,'+'))
 MUL.addEventListener('click', () => current = replacer(current,'x'))
 SUB.addEventListener('click', () => current = replacer(current,'-'))
@@ -85,9 +85,10 @@ sidebar.appendChild(DIV);
 keypad.appendChild(numbers)
 keypad.appendChild(sidebar)
 keypad.classList.add('keypad');
-document.body.appendChild(screen)
-document.body.appendChild(keypad)
-document.body.append(bottom)
+main.appendChild(screen)
+main.appendChild(keypad)
+main.appendChild(bottom)
+main.classList.add('main')
 
 function replacer(x,y) {
     return x.slice(-1)>=0 && x.slice(-1)<10 ? x+=y : x.slice(0,-1)+y
@@ -132,7 +133,6 @@ function divide(x) {
     return comby.join('')
 }
 
-
 function plus(x) {
     let temp = x.split('+')
     comby = []
@@ -158,9 +158,4 @@ function minus(x) {
     }
     return comby.join('')
 }
-
-
-
-
-
 
